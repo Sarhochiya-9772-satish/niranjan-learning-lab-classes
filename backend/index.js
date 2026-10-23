@@ -13,15 +13,12 @@ import lectureRoute from "./routes/Lecture.route.js";
 
 const app = express();
 dotenv.config();
-const allowedOrigins = [process.env.FRONTEND_URL];
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+
+const allowedOrigins = [
+    process.env.FRONTEND_URL?.replace(/\/$/, ""),
+    "https://niranjan-learning-lab-classes.vercel.app",
+    "http://localhost:5173",
+].filter(Boolean);
 
 //middleware
 app.use(express.json());
